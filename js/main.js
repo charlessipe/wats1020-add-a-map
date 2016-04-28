@@ -12,23 +12,45 @@ $(document).ready(function(){
 // TODO: Inside of your on ready handler, invoke the Leaflet.js library
 // to draw a map in your `#map-container` div.
 
-var mymap = L.map('mapid').setView([46.878, -121.857], 10);   
+var mymap = L.map('mapid').setView([46.878, -121.857], 11);   
   
 // TODO: Add 2 layers to your map you have visuals. Use the Open Street Maps
 // tiles served through the MapQuest CDN. Consult this example to set up
 // the map tiles layers:
 
- L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
     id: 'ichuck.ppbk979e',
     accessToken: 'pk.eyJ1IjoiaWNodWNrIiwiYSI6ImNpbmdiN3pncjFoa3F2Z2t2OTg1cnNhaDgifQ.Y9DM2rNdmc3sX3nWNr5bpg'
 }).addTo(mymap); 
 
+/*
+L.tileLayer('http://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'ichuck.ppbk979e',
+    accessToken: 'pk.eyJ1IjoiaWNodWNrIiwiYSI6ImNpbmdiN3pncjFoa3F2Z2t2OTg1cnNhaDgifQ.Y9DM2rNdmc3sX3nWNr5bpg'
+}).addTo(mymap);   
+*/
+  
+var imageUrl = 'img/carousel/Mount_Rainier_and_lake_reflection.jpg',
+    imageBounds = [[46.878, -121.877], [46.95, -121.98]];
+
+L.imageOverlay(imageUrl, imageBounds).addTo(mymap);
+
+
+  
 // TODO: Customize that Map to show markers with popups at no fewer than 3
 // interesting locations. (You'll need to figure out the latitude/longitude for
 // these locations using a mapping tool such as Google Maps.)
-
+/*
+var mapquest = L.map('map', {
+    layers: MQ.mapLayer(),
+    center: [ 46.878, -121.857 ],
+    zoom: 12
+  });  
+*/  
 var marker = L.marker([46.878, -121.857]).addTo(mymap);
 
 var popup = L.popup()
@@ -50,11 +72,9 @@ var popup3 = L.popup()
     .setContent("Puyallup Glacier")
     .openOn(mymap);
 
-/*var mapquest = L.map('map', {
-    layers: MQ.mapLayer(),
-    center: [ 46.878, -121.857 ],
-    zoom: 12
-  });
- */ 
+/*
+var marker4 = L.marker([46.852, -121.760]).addTo(mymap);
+marker4.popup("<b>Welcome to Mt. Rainier!</b><br>This peak is 4,392 feet high.");
+*/
   
 });
